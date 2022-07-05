@@ -1,0 +1,25 @@
+<html>
+    <head></head>
+    <body>
+        <div>
+            <h1>Welcome to Ajax</h1>
+            <div id="dd">
+
+            </div>
+        </div>
+        <script>
+            var ob1 = new XMLHttpRequest();
+            ob1.open("GET","https://restcountries.com/v2/all");
+            ob1.send()
+            ob1.onloadend=function(){
+                var countries = JSON.parse(ob1.response);
+                console.log(countries)
+                countries.forEach(function(c){
+                    var newli = document.createElement('li');
+                    newli.innerHTML=`${c.name}<img src=${c.flag} width="100px">`;
+                    document.getElementById("dd").appendChild(newli)
+                })
+            }
+        </script>
+    </body>
+</html>
