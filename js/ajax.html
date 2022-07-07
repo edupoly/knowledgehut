@@ -9,17 +9,20 @@
         </div>
         <script>
             var ob1 = new XMLHttpRequest();
+            console.dir(ob1)
             ob1.open("GET","https://restcountries.com/v2/all");
+            console.log(ob1.readyState)
             ob1.send()
+           
+            console.log(ob1.readyState)
+            ob1.onreadystatechange = function(){
+               if(ob1.readyState===4){
+                console.log(ob1.response)
+               }
+            }
             ob1.onloadend=function(){
-                var countries = JSON.parse(ob1.response);
-                console.log(countries)
-                countries.forEach(function(c){
-                    var newli = document.createElement('li');
-                    newli.innerHTML=`${c.name}<img src=${c.flag} width="100px">`;
-                    document.getElementById("dd").appendChild(newli)
-                })
+                console.log(ob1.response)
             }
         </script>
     </body>
-</html>
+</html>0,1,2,3,4
