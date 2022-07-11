@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .mybox{
+                border:1px solid;
+                padding:10px;
+                margin:10px;
+            }
+            .bggrey{
+                background-color: lightgray;
+            }
+            .bgblue{
+                background-color: lightcyan;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div id="dd">
+
+        </div>
+        <div id="d1">
+
+        </div>
+        <div id="d2">
+
+        </div>
+        
+        <script type="text/babel">
+            class Counter extends React.Component{
+                count2=333;
+                constructor(){
+                    super();
+                    this.state={
+                        count:199
+                    }
+                }
+                incCount2By12=()=>{
+                    this.count2=this.count2+12;
+                    this.forceUpdate()
+                }
+                incCount=()=>{
+                    this.setState({count:this.state.count+1})
+                }
+                render(){
+                    console.log(this)
+                    return(
+                        <div className="mybox">
+                            <button onClick={this.incCount}>Incremnt Count</button>
+                            <h1>Count:{this.state.count}</h1>
+                            <button onClick={this.incCount2By12}>Increment by 12</button>
+                            <h1>Count2:{this.count2}</h1>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<Counter></Counter>,document.getElementById('d2'))
+        </script>
+    </body>
+</html>

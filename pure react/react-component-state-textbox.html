@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .mybox{
+                border:1px solid;
+                padding:10px;
+                margin:10px;
+            }
+            .bggrey{
+                background-color: lightgray;
+            }
+            .bgblue{
+                background-color: lightcyan;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="d2">
+
+        </div>
+        
+        <script type="text/babel">
+            class Counter extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        myname:''
+                    }
+                }
+                handleInput = (e)=>{
+                    this.setState({myname:e.target.value})
+                }
+                render(){
+                    console.log(this)
+                    return(
+                        <div className="mybox">
+                            <input type="text" onKeyUp={this.handleInput}/>
+                            <h1>My Name is:{this.state.myname}</h1>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<Counter></Counter>,document.getElementById('d2'))
+        </script>
+    </body>
+</html>
