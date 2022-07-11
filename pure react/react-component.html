@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .mybox{
+                border:1px solid;
+                padding:10px;
+                margin:10px;
+            }
+            .bggrey{
+                background-color: lightgray;
+            }
+            .bgblue{
+                background-color: lightcyan;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div id="dd">
+
+        </div>
+        <div id="d1">
+
+        </div>
+        <div id="d2">
+
+        </div>
+        
+        <script type="text/babel">
+            class SampleBox extends React.Component{
+                render(){
+                    console.log(this)
+                    return(
+                        <div className="mybox">
+                            <h1>Hello, {this.props.fullname}</h1>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<SampleBox fullname='snehalatha'></SampleBox>,document.getElementById('dd'))
+            ReactDOM.render(<SampleBox fullname='prateek jain'></SampleBox>,document.getElementById('d1'))
+            ReactDOM.render(<SampleBox fullname="alok sirohi"></SampleBox>,document.getElementById('d2'))
+        </script>
+    </body>
+</html>

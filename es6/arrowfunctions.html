@@ -1,0 +1,61 @@
+<html>
+    <body>
+        <script>
+            function abc(){
+                console.log("HI")
+            }
+            var xyz = function(){
+                console.log('hello')
+                return 'praveen'
+            }
+            var res = xyz()
+
+            var pqr = (a,b)=>{
+                console.log("india");
+                return "sachin";
+            }
+            var res2 = pqr(88,44);
+
+            var ar = [11,234,9,45,26,29,6666,94,299,4,872,47,333,21,9999];
+            ar.forEach((a,b)=>{
+                console.log(a,b)
+            })
+            var br = ar.filter(function(a){
+                if(a%2===0){
+                    return true
+                }
+                else{
+                    return false
+                }
+            })
+            console.log(br);
+            var br = ar.filter((a)=>{
+                if(a%2===1){
+                    return true
+                }
+                else{
+                    return false
+                }
+            })
+            console.log(br);
+            var cr = ar.filter(a=>{
+                if(a>9 && a<100){
+                    return true
+                }
+                else{
+                    return false
+                }
+            })
+            console.log(cr);
+            var dr = ar.filter(a=>{
+                return (a>99 && a<1000)?true:false
+            })
+            console.log(dr);
+            var er = ar.filter(a=>(a>=0 && a<10)?true:false)
+            console.log(er);
+
+            var fr = ar.filter(a=>a>=1000 && a<10000)
+            console.log(fr);
+        </script>
+    </body>
+</html>

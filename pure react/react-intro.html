@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .mybox{
+                border:1px solid;
+                padding:10px;
+                margin:10px;
+            }
+            .bggrey{
+                background-color: lightgray;
+            }
+            .bgblue{
+                background-color: lightcyan;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 style="color:red" class="mybox bggrey">Hello HTML</h1>
+        </div>
+        <div id="dd">
+
+        </div>
+        <div id="d1">
+
+        </div>
+        <div id="d2">
+
+        </div>
+        <div id="d3">
+
+        </div>
+        <div id="d4">
+
+        </div>
+        <script type="text/babel">
+            var jh1 = document.createElement("h1");
+            jh1.innerHTML='Hello DOM Element';
+            jh1.style.color="green";
+            jh1.classList.add('mybox')
+            jh1.classList.add('bggrey')
+            document.getElementById('dd').appendChild(jh1);
+
+
+            var rh1 = React.createElement("h1",{style:{'color':'blue'},class:"mybox bggrey"},"Hello React Element");
+            ReactDOM.render(rh1,document.getElementById('d1'))
+
+            class MyComp extends React.Component{
+                render(){
+                    return(
+                        <div className="mybox">
+                            <i>This is reusable</i>
+                        </div>
+                    )
+                }
+            }
+
+            var jsxh1 = <h1 style={{color:'black'}} className="mybox bggrey">
+                            Hello JSX Element
+                            <MyComp></MyComp>
+                        </h1>;
+            ReactDOM.render(jsxh1,document.getElementById('d2'))
+
+            var jsxh2 = <h1 className="mybox bgblue">
+                            <MyComp></MyComp>
+                            this is another jsx element
+                        </h1>
+            ReactDOM.render(jsxh2,document.getElementById('d3'))
+            ReactDOM.render(<MyComp></MyComp>,document.getElementById('d4'))
+        </script>
+    </body>
+</html>

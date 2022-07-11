@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <script>
+            function Student(){
+                this.firstname='praveen';
+                this.lastname='gubbala';
+                this.techs = ['nodejs','reactjs','mongodb'];
+                this.getFullName=function(){
+                    return this.firstname+this.lastname;
+                }
+                this.printTechs = function(){
+                    this.techs.forEach((t)=>{
+                        console.log(this.firstname+" good with "+t)
+                    })
+                }
+            }
+            var std1 = new Student();
+            var fn = std1.getFullName();
+            console.log(fn)
+            std1.printTechs();
+        </script>
+    </body>
+</html>
