@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class MyBox extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        num1:0,
+                        num2:0,
+                        res:0
+                    }
+                }
+                handleNum1 = (event)=>{
+                    this.setState({num1:Number(event.target.value)})
+                }
+                handleNum2 = (event)=>{
+                    this.setState({num2:Number(event.target.value)})
+                }
+                add = ()=>{
+                    var z = this.state.num1+this.state.num2;
+                    this.setState({res:z})
+                }
+                render(){
+                    return(
+                        <div className="betterview">
+                           <input type="text" onKeyUp={this.handleNum1}/>
+                           <input type="text" onKeyUp={this.handleNum2}/>
+                           <br />
+                           <button onClick={this.add}>Add</button>
+                           <h1>Answer:{this.state.res}</h1>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<MyBox></MyBox>,document.getElementById("root"))
+        </script>
+    </body>
+</html>

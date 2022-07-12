@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class MyBox extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        myname:''
+                    }
+                }
+                abc=(e)=>{
+                    console.log(e);
+                    alert("HI")
+                }
+                xyz = (ev)=>{
+                    alert(ev.target.innerHTML)
+                }
+                pqr = (event)=>{
+                    console.log("key pressed",event.target.value)
+                    this.setState({myname:event.target.value})
+                }
+                render(){
+                    return(
+                        <div className="betterview">
+                            <button onClick={this.abc}>Click me</button>
+                            <button onClick={this.xyz}>1</button>
+                            <button onClick={this.xyz}>2</button>
+                            <button onClick={this.xyz}>3</button>
+                            <button onClick={this.xyz}>4</button>
+                            <hr/>
+                            <input type="text" onKeyUp={this.pqr}/>
+                            <h1>{this.state.myname}</h1>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<MyBox></MyBox>,document.getElementById("root"))
+        </script>
+    </body>
+</html>
