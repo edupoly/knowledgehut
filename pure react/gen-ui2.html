@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            
+            class MyBox extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        count:0,
+                        myname:'Praveen Gubbala',
+                        students:['anu','priya','kumar','eshwar'],
+                        food:[
+                            {
+                                title:'idly',
+                                price:30,
+                                status:'available'
+                            },
+                            {
+                                title:'dosa',
+                                price:50,
+                                status:'not available'
+                            },
+                            {
+                                title:'dokhla',
+                                price:40,
+                                status:'available'
+                            },
+                            {
+                                title:'poha',
+                                price:20,
+                                status:'available'
+                            }
+                        ]
+                    }
+                }
+                
+                render(){
+                    return(
+                        <div className="betterview">
+                            <h1>{this.state.myname}</h1>
+                            {
+                                this.state.students.map((s)=>{
+                                    return (<h2>{s}</h2>)
+                                })
+                            }
+                            <h1>Food</h1>
+                            <table border='2'>
+                                <thead>
+                                    <th>Titlte</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.state.food.map((f)=>{
+                                            return (
+                                                <tr>
+                                                    <td>{f.title}</td>    
+                                                    <td>{f.price}</td>    
+                                                    <td>{f.status}</td>    
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                            {
+
+                            }
+                                
+                            {
+                                this.state.food.map((f)=>{
+                                    return (<div>
+                                                <h2>{f.title}</h2>
+                                                <h2>{f.price}</h2>
+                                                <h2>{f.status}</h2>
+                                            </div>)
+                                })
+                            }
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<MyBox></MyBox>,document.getElementById("root"))
+        </script>
+    </body>
+</html>

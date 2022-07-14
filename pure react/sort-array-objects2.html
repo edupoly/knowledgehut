@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+            td{
+                text-align: center;
+            }
+            th:hover{
+                cursor: pointer;
+            }
+            th{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class MyBox extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        skey:'',
+                        ascorder:true,
+                        food:[
+                            {
+                                title:'idly',
+                                price:30,
+                                status:'available'
+                            },
+                            {
+                                title:'dosa',
+                                price:50,
+                                status:'not available'
+                            },
+                            {
+                                title:'dokhla',
+                                price:40,
+                                status:'available'
+                            },
+                            {
+                                title:'poha',
+                                price:20,
+                                status:'available'
+                            },
+                            {
+                                title:'puri',
+                                price:80,
+                                status:'notavailable'
+                            },
+                            {
+                                title:'vada',
+                                price:60,
+                                status:'available'
+                            }
+                        ]
+                    }
+                }
+                sortByKey = (key)=>{
+                    var temp =[...this.state.food];
+                    if(this.state.ascorder){
+                        temp.sort((a,b)=>{
+                            if(a[key]>b[key]){
+                                return 1
+                            }
+                            else{
+                                return -1
+                            }
+                        })
+                    }
+                    else{
+                        temp.sort((a,b)=>{
+                            if(a[key]>b[key]){
+                                return -1
+                            }
+                            else{
+                                return 1
+                            }
+                        })
+                    }
+                    this.setState({food:[...temp],ascorder:!this.state.ascorder,skey:key})
+                }
+                
+                render(){
+                    return(
+                        <div className="betterview">
+                            <h1>Food</h1>        
+                            <table className="table table-striped" border='2' cellspacing='2px' cellpadding="10px" width="50%">
+                                <thead>
+                                    <th onClick={()=>{this.sortByKey('title')}}>
+                                        Title
+                                        {this.state.skey!=='title' && <i class="bi bi-chevron-expand"></i>}
+                                        {this.state.skey==='title' && this.state.ascorder && <i class="bi bi-chevron-down"></i>}
+                                        {this.state.skey==='title' && !this.state.ascorder && <i class="bi bi-chevron-up"></i>}
+
+                                    </th>
+                                    <th onClick={()=>{this.sortByKey('price')}}>Price
+                                        {this.state.skey!=='price' && <i class="bi bi-chevron-expand"></i>}
+                                        {this.state.skey==='price' && this.state.ascorder && <i class="bi bi-chevron-down"></i>}
+                                        {this.state.skey==='price' && !this.state.ascorder && <i class="bi bi-chevron-up"></i>}
+
+                                    </th>
+                                    <th onClick={()=>{this.sortByKey('status')}}>Status
+                                        {this.state.skey!=='status' && <i class="bi bi-chevron-expand"></i>}
+                                        {this.state.skey==='status' && this.state.ascorder && <i class="bi bi-chevron-down"></i>}
+                                        {this.state.skey==='status' && !this.state.ascorder && <i class="bi bi-chevron-up"></i>}
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.state.food.map((f)=>{
+                                            return (
+                                                <tr>
+                                                    <td>{f.title}</td>    
+                                                    <td>{f.price}</td>    
+                                                    <td>{f.status}</td>    
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<MyBox></MyBox>,document.getElementById("root"))
+        </script>
+    </body>
+</html>

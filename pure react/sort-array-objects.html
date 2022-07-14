@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class MyBox extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        
+                        food:[
+                            {
+                                title:'idly',
+                                price:30,
+                                status:'available'
+                            },
+                            {
+                                title:'dosa',
+                                price:50,
+                                status:'not available'
+                            },
+                            {
+                                title:'dokhla',
+                                price:40,
+                                status:'available'
+                            },
+                            {
+                                title:'poha',
+                                price:20,
+                                status:'available'
+                            },
+                            {
+                                title:'puri',
+                                price:80,
+                                status:'notavailable'
+                            },
+                            {
+                                title:'vada',
+                                price:60,
+                                status:'available'
+                            }
+                        ]
+                    }
+                }
+                sortByTitle = ()=>{
+                    var temp =[...this.state.food];
+                    temp.sort((a,b)=>{
+                        if(a.title>b.title){
+                            return 1
+                        }
+                        else{
+                            return -1
+                        }
+                    })
+                    this.setState({food:[...temp]})
+                }
+                sortByPrice=()=>{
+                    var temp = [...this.state.food]
+                    temp.sort((a,b)=>{
+                        if(a.price>b.price){
+                            return 1
+                        }
+                        else{
+                            return -1
+                        }
+                    })
+                    this.setState({food:[...temp]})
+                }
+                render(){
+                    return(
+                        <div className="betterview">
+                           
+                            <h1>Food</h1>
+                            <button onClick={this.sortByTitle}>Sort by Title</button>
+                            <button onClick={this.sortByPrice}>Sort by Price</button>
+                            <table border='2'>
+                                <thead>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.state.food.map((f)=>{
+                                            return (
+                                                <tr>
+                                                    <td>{f.title}</td>    
+                                                    <td>{f.price}</td>    
+                                                    <td>{f.status}</td>    
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<MyBox></MyBox>,document.getElementById("root"))
+        </script>
+    </body>
+</html>
