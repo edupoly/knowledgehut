@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class POS extends React.Component{
+                constructor(){//constructor start
+                    super();
+                    this.state={
+                        selectedItems:[],
+                        total:0,
+                        food:[
+                            {
+                                title:'idly',
+                                price:30,
+                                status:'available',
+                                image:'idli1.avif'
+                            },
+                            {
+                                title:'dosa',
+                                price:50,
+                                status:'not available',
+                                image:'dosa.avif'
+                            },
+                            {
+                                title:'dokhla',
+                                price:40,
+                                status:'available',
+                                image:'dokhla.webp'
+                            },
+                            {
+                                title:'poha',
+                                price:20,
+                                status:'available',
+                                image:'poha.webp'
+                            },
+                            {
+                                title:'puri',
+                                price:80,
+                                status:'not available',
+                                image:'puri.avif'
+                            },
+                            {
+                                title:'vada',
+                                price:60,
+                                status:'available',
+                                image:'vada.avif'
+                            },
+                            {
+                                title:'aloo paratha',
+                                price:50,
+                                status:'not available',
+                                image:'aloo-paratha.webp'
+                            },
+                            {
+                                title:'coffee',
+                                price:23,
+                                status:'not available',
+                                image:'coffee.webp'
+                            },
+                            {
+                                title:'dahipuri',
+                                price:40,
+                                status:'not available',
+                                image:'dahipuri.webp'
+                            },
+                            {
+                                title:'dal-vada',
+                                price:80,
+                                status:'not available',
+                                image:'dal-vada.webp'
+                            },
+                            {
+                                title:'mysore bonda',
+                                price:80,
+                                status:'not available',
+                                image:'mysorebonda.webp'
+                            },
+                            {
+                                title:'sambar rice',
+                                price:80,
+                                status:'not available',
+                                image:'sambar-rice.webp'
+                            },
+                            {
+                                title:'sandwich',
+                                price:80,
+                                status:'not available',
+                                image:'sandwich.jpeg'
+                            },
+                            {
+                                title:'upma',
+                                price:80,
+                                status:'not available',
+                                image:'upma.webp'
+                            },
+                            {
+                                title:'vada pav',
+                                price:80,
+                                status:'not available',
+                                image:'vada-pav.webp'
+                            },
+                        ]
+                    }
+                }//constructor ends
+                //methods
+                addToCart = (item)=>{
+                    var y = this.state.selectedItems.findIndex(function(i){
+                        if(i.title===item.title){
+                            return true;
+                        }
+                    })
+                    if(y===-1){
+                        item.count=1
+                        this.setState({selectedItems:[...this.state.selectedItems,item]})
+                    }
+                    else{
+                        var temp = this.state.selectedItems;
+                        temp[y].count++;
+                        this.setState({selectedItems:[...temp]})
+                    }
+                }
+                removeFromCart = (index)=>{
+                    var temp = this.state.selectedItems;
+                    if(temp[index].count===1){
+                        temp.splice(index,1)
+                        this.setState({selectedItems:[...temp]})
+
+                    }else{
+                        temp[index].count--;
+                        this.setState({selectedItems:[...temp]})
+
+                    }
+                
+                }
+                getTotal=()=>{
+                    return this.state.selectedItems.reduce((a,b)=>{
+                        return a+(b.price*b.count)
+                    },0)
+                }
+                render(){
+                    return(
+                        <div className="betterview d-flex">
+                            <div className="betterview w-75">
+                                <h1>Food Items</h1>
+                                <div className="d-flex flex-wrap justify-content-between">
+                                    {
+                                        this.state.food.map((item)=>{
+                                            return(
+                                                <div className="betterview w-25 d-flex rounded justify-content-between " onClick={()=>{this.addToCart(item)}}>
+                                                    <div>
+                                                        <h4>{item.title}</h4>
+                                                        Rs.{item.price}
+                                                    </div>
+                                                    <div>
+                                                        <img className="rounded" src={item.image} width="100px"/>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            <div className="betterview w-25 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h1 className="text-end">Cart</h1>
+                                    {
+                                        this.state.selectedItems.map((sItem,index)=>{
+                                            return(
+                                                <div className='d-flex justify-content-between'>
+                                                    <div className='w-50'>{sItem.title}</div>
+                                                    <div className='text-end'>
+                                                        <i className="text-warning bi bi-dash-square-fill m-2" onClick={()=>{this.removeFromCart(index)}}></i>
+                                                        {sItem.count}
+                                                        <i className="text-primary bi bi-plus-square-fill m-2" onClick={()=>{this.addToCart(sItem)}}></i>
+
+                                                    </div>
+                                                    <div className='w-25 text-end'>{sItem.price*sItem.count}</div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <h1 className="text-end">Total:{this.getTotal()}</h1>
+                            </div>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<POS></POS>,document.getElementById("root"))
+        </script>
+    </body>
+</html>

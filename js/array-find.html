@@ -1,0 +1,56 @@
+<html>
+    <body>
+        <script>
+            var ar = [12,28,34,29,45,53];
+            var x = ar.includes(32);
+            console.log(x)
+
+            var y = ar.find(function(a,i){
+                if(a===45){
+                    return true
+                }
+                console.log(a,i)
+            })
+            console.log(y)
+
+            var students = [
+                {
+                    fullname:'prateek',
+                    place:'denmark'
+                },
+                {
+                    fullname:'praveen',
+                    place:'india'
+                },
+                {
+                    fullname:'kumar',
+                    place:'usa'
+                },
+            ]
+            
+            var skey = 'prateek';
+            
+            var r = students.find(function(a){
+                if(a.fullname===skey){
+                    return true
+                }
+                else{
+                    return false
+                }
+            })
+            console.log(r)
+
+            var s1key = 'gauri';
+            
+            var r1 = students.findIndex(function(a){
+                if(a.fullname===s1key){
+                    return true
+                }
+                else{
+                    return false
+                }
+            })
+            console.log(r1)
+        </script>
+    </body>
+</html>
