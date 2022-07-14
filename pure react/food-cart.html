@@ -126,13 +126,31 @@
                     })
                     if(y===-1){
                         item.count=1
-                        this.setState({selectedItems:[...this.state.selectedItems,item],total:this.state.total+item.price})
+                        this.setState({selectedItems:[...this.state.selectedItems,item]})
                     }
                     else{
                         var temp = this.state.selectedItems;
                         temp[y].count++;
-                        this.setState({selectedItems:[...temp],total:this.state.total+item.price})
+                        this.setState({selectedItems:[...temp]})
                     }
+                }
+                removeFromCart = (index)=>{
+                    var temp = this.state.selectedItems;
+                    if(temp[index].count===1){
+                        temp.splice(index,1)
+                        this.setState({selectedItems:[...temp]})
+
+                    }else{
+                        temp[index].count--;
+                        this.setState({selectedItems:[...temp]})
+
+                    }
+                
+                }
+                getTotal=()=>{
+                    return this.state.selectedItems.reduce((a,b)=>{
+                        return a+(b.price*b.count)
+                    },0)
                 }
                 render(){
                     return(
@@ -143,10 +161,14 @@
                                     {
                                         this.state.food.map((item)=>{
                                             return(
-                                                <div className="betterview" onClick={()=>{this.addToCart(item)}}>
-                                                    <h2>{item.title}</h2>
-                                                    <br/>
-                                                    Rs.{item.price}
+                                                <div className="betterview w-25 d-flex rounded justify-content-between " onClick={()=>{this.addToCart(item)}}>
+                                                    <div>
+                                                        <h4>{item.title}</h4>
+                                                        Rs.{item.price}
+                                                    </div>
+                                                    <div>
+                                                        <img className="rounded" src={item.image} width="100px"/>
+                                                    </div>
                                                 </div>
                                             )
                                         })
@@ -155,19 +177,25 @@
                             </div>
                             <div className="betterview w-25 d-flex flex-column justify-content-between">
                                 <div>
-                                    <h1>Cart</h1>
+                                    <h1 className="text-end">Cart</h1>
                                     {
-                                        this.state.selectedItems.map((sItem)=>{
+                                        this.state.selectedItems.map((sItem,index)=>{
                                             return(
                                                 <div className='d-flex justify-content-between'>
-                                                    <div>{sItem.title}-{sItem.count}</div>
-                                                    <div>{sItem.price*sItem.count}</div>
+                                                    <div className='w-50'>{sItem.title}</div>
+                                                    <div className='text-end'>
+                                                        <i className="text-warning bi bi-dash-square-fill m-2" onClick={()=>{this.removeFromCart(index)}}></i>
+                                                        {sItem.count}
+                                                        <i className="text-primary bi bi-plus-square-fill m-2" onClick={()=>{this.addToCart(sItem)}}></i>
+
+                                                    </div>
+                                                    <div className='w-25 text-end'>{sItem.price*sItem.count}</div>
                                                 </div>
                                             )
                                         })
                                     }
                                 </div>
-                                <h1>Total:{this.state.total}</h1>
+                                <h1 className="text-end">Total:{this.getTotal()}</h1>
                             </div>
                         </div>
                     )
