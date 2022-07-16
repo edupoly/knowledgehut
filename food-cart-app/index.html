@@ -161,7 +161,7 @@
                                     {
                                         this.state.food.map((item)=>{
                                             return(
-                                                <div className="betterview w-25 d-flex rounded justify-content-between " onClick={()=>{this.addToCart(item)}}>
+                                                <div className="shadow p-2 m-2 w-25 d-flex rounded justify-content-between " onClick={()=>{this.addToCart(item)}}>
                                                     <div>
                                                         <h4>{item.title}</h4>
                                                         Rs.{item.price}
@@ -182,14 +182,14 @@
                                         this.state.selectedItems.map((sItem,index)=>{
                                             return(
                                                 <div className='d-flex justify-content-between'>
-                                                    <div className='w-50'>{sItem.title}</div>
+                                                    <div className='w-50'><h3>{sItem.title}</h3></div>
                                                     <div className='text-end'>
-                                                        <i className="text-warning bi bi-dash-square-fill m-2" onClick={()=>{this.removeFromCart(index)}}></i>
-                                                        {sItem.count}
-                                                        <i className="text-primary bi bi-plus-square-fill m-2" onClick={()=>{this.addToCart(sItem)}}></i>
+                                                        <i className="text-warning  align-bottom bi bi-dash-square-fill m-2" onClick={()=>{this.removeFromCart(index)}}></i>
+                                                        <b className="align-text-bottom big">{sItem.count}</b>
+                                                        <i className="text-primary align-bottom bi bi-plus-square-fill m-2" onClick={()=>{this.addToCart(sItem)}}></i>
 
                                                     </div>
-                                                    <div className='w-25 text-end'>{sItem.price*sItem.count}</div>
+                                                    <div className='w-25 text-end'><h3>{sItem.price*sItem.count}</h3></div>
                                                 </div>
                                             )
                                         })
