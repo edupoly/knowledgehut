@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                
+                margin:10px;
+                padding:10px;
+
+            }
+            #toast{
+                border:1px solid;
+                border-radius: 10px;
+                position: absolute;
+                top: 10px;
+                right:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class Todolist extends React.Component{
+                constructor(){
+                    console.log("constuctor called");
+                    super();
+                    this.state={
+                        tasks:['goto gym','eat healthy','sleep time'],
+                        flag:false
+                    }
+                }
+                addTask = ()=>{
+                    var newtask = document.getElementById('d1').value;
+                    this.setState({tasks:[...this.state.tasks,newtask],flag:true});
+                    setTimeout(()=>{
+                        this.setState({flag:false})
+                    },3000)
+                }
+                componentDidMount(){
+                    console.log("component mounted")
+                }
+                componentDidUpdate(){
+                    console.log("component updated")
+                }
+                shouldComponentUpdate(a,b){
+                    console.log("should component update called and returned true")
+                    console.log("a::",a)
+                    console.log("b::",b)//new state
+                    console.log("this.state",this.state)//old state
+                    return true
+                }
+                render(){
+                    console.log("render called")
+                    return(
+                        <div class="betterview">
+                            <h1>Todolist</h1>
+                            <input type="text" id='d1'/>
+                            <button onClick={this.addTask}>Add Task</button>
+                            {
+                                this.state.tasks.map((task)=>{
+                                    return(<li>{task}</li>)
+                                })
+                            }
+                            {
+                                this.state.flag && (<div id="toast">
+                                                        new task added
+                                                    </div>)
+                            }
+                            
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<Todolist />,document.getElementById("root"))
+        </script>
+    </body>
+</html>
