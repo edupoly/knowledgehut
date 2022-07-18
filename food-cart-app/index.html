@@ -154,10 +154,10 @@
                 }
                 render(){
                     return(
-                        <div className="betterview d-flex">
-                            <div className="betterview w-75">
+                        <div className=" d-flex">
+                            <div className="shadow p-2 m-2 w-75">
                                 <h1>Food Items</h1>
-                                <div className="d-flex flex-wrap justify-content-between">
+                                <div className="d-flex flex-wrap justify-content-around">
                                     {
                                         this.state.food.map((item)=>{
                                             return(
@@ -175,8 +175,8 @@
                                     }
                                 </div>
                             </div>
-                            <div className="betterview w-25 d-flex flex-column justify-content-between">
-                                <div>
+                            <div className="shadow p-2 m-2 w-25 d-flex flex-column justify-content-between">
+                                <div >
                                     <h1 className="text-end">Cart</h1>
                                     {
                                         this.state.selectedItems.map((sItem,index)=>{
@@ -185,7 +185,7 @@
                                                     <div className='w-50'><h3>{sItem.title}</h3></div>
                                                     <div className='text-end'>
                                                         <i className="text-warning  align-bottom bi bi-dash-square-fill m-2" onClick={()=>{this.removeFromCart(index)}}></i>
-                                                        <b className="align-text-bottom big">{sItem.count}</b>
+                                                        <b className="">{sItem.count}</b>
                                                         <i className="text-primary align-bottom bi bi-plus-square-fill m-2" onClick={()=>{this.addToCart(sItem)}}></i>
 
                                                     </div>
