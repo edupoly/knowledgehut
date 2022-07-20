@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class Child extends React.PureComponent{
+                constructor(){
+                    super();
+                    alert("child constructor called")
+                }
+                componentDidMount(){
+                    alert("child did mount")
+                }
+                render(){
+                    alert('child render')
+                    return(
+                        <div className="betterview">
+                            <h2>Child Component</h2>
+                        </div>
+                    )
+                }
+            }
+            class Parent extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        count:129
+                    }
+                    alert("parent constructor called")
+                }
+                componentDidMount(){
+                    alert("parent did mount")
+                }
+                increment = ()=>{
+                    this.setState({count:this.state.count+1})
+                }
+                decrement = ()=>{
+                    this.setState({count:this.state.count-1})
+                }
+                render(){
+                    alert('parent render')
+                    return(
+                        <div className="betterview">
+                            <h1>Parent Component Count: {this.state.count}</h1>
+                            <button onClick={this.increment}>Increment</button>
+                            <button onClick={this.decrement}>Decrement</button>
+                            <Child></Child>
+                            <Child></Child>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<Parent />,document.getElementById("root"))
+        </script>
+    </body>
+</html>

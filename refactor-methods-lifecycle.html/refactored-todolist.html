@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+
+            }
+            #toast{
+                border:1px solid;
+                border-radius: 10px;
+                position: absolute;
+                top: 10px;
+                right:10px;
+                padding:10px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class Todo extends React.PureComponent{
+                
+                render(){
+                    console.log(this.props.task+" rendered")
+                    return(
+                        <div className='betterview'>
+                            <li>
+                                {this.props.task}
+                                <button onClick={()=>{this.props.delTask(this.props.i)}}>Delete</button>
+                            </li>
+                        </div>
+                        
+                    )
+                }
+            }
+            class Todolist extends React.Component{
+                constructor(){
+                    super();
+                    this.state={
+                        todos:['gym','greentea','walking']
+                    }
+                }
+                addTask = ()=>{
+                    var newtask = document.getElementById('d1').value;
+                    this.setState({todos:[...this.state.todos,newtask]})
+                }
+                deleteTask = (id)=>{
+                    console.log(id)
+                    var temp = [...this.state.todos];
+                    temp.splice(id,1);
+                    this.setState({todos:[...temp]})
+                }
+                render(){
+                    return(
+                        <div className="betterview">
+                            <h1>Todolist </h1>
+                            <input type="text" id='d1'/>
+                            <button onClick={this.addTask}>Add Task</button>
+                            {
+                                this.state.todos.map((task,i)=>{
+                                    return(
+                                        <Todo task={task} i={i} delTask={this.deleteTask}></Todo>
+                                    )
+                                })
+                            }
+                        </div>
+                        
+                    )
+                }
+            }
+            ReactDOM.render(<Todolist />,document.getElementById("root"))
+        </script>
+    </body>
+</html>
