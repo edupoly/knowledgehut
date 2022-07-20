@@ -15,6 +15,7 @@
         <div id="root"></div>
         <script type="text/babel">
             function Todolist(){
+                console.log("Todolist first line");
                 const [todos,settodos]=React.useState(['kheera','skipping','yoga']);
                 function addTask(){
                     var newtask = document.getElementById('d1').value;
@@ -25,6 +26,12 @@
                     temp.splice(index,1);
                     settodos([...temp])
                 }
+                React.useEffect(function(){
+                    console.log('useEffect called')
+                })
+                React.useEffect(function(){
+                    console.log("useEffect called with empty dependency array")
+                },[])
                 return(
                     <div className="betterview">
                         <h1>Todolist</h1>
