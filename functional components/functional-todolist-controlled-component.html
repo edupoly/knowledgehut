@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function Todolist(){
+                console.log("Todolist first line");
+                const [todos,settodos]=React.useState(['kheera','skipping','yoga']);
+                const [newtask,setnewtask]=React.useState('');
+                function handleInput(e){
+                    setnewtask(e.target.value)
+                }
+                function addTask(){
+                    settodos([...todos,newtask])
+                }
+                function deleteTask(index){
+                    var temp = [...todos];
+                    temp.splice(index,1);
+                    settodos([...temp])
+                }
+                React.useEffect(function(){
+                    console.log('useEffect called')
+                })
+                React.useEffect(function(){
+                    console.log("useEffect called with empty dependency array")
+                },[])
+                return(
+                    <div className="betterview">
+                        <h1>Todolist</h1>
+                        <input type='text'onKeyUp={handleInput}/>
+                        <button onClick={addTask}>Add Task</button>
+                        {
+                            todos.map((task,i)=>{
+                                return (
+                                    <li>
+                                        {task}
+                                        <button onClick={()=>{deleteTask(i)}}>Delete</button>
+                                    </li>
+                                )
+                            })
+                        }
+                    </div>
+                )
+            }
+            ReactDOM.render(<Todolist />,document.getElementById("root"))
+        </script>
+    </body>
+</html>
