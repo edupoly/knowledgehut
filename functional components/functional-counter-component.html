@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function MyCounter(){
+                const [count,setCount]=React.useState(0);
+                function inc(){
+                    setCount(count+1)
+                }
+                function dec(){
+                    setCount(count-1)
+                }
+                function reset(){
+                    setCount(0)
+                }
+                return(
+                    <div className='betterview'>
+                        <h1>Count:{count}</h1>
+                        <button onClick={inc}>Increment</button>&nbsp;&nbsp;&nbsp;
+                        <button onClick={dec}>Decrement</button>&nbsp;&nbsp;&nbsp;
+                        <button onClick={reset}>Reset</button>&nbsp;&nbsp;&nbsp;
+                    </div>
+                )
+            }
+            ReactDOM.render(<MyCounter />,document.getElementById("root"))
+        </script>
+    </body>
+</html>

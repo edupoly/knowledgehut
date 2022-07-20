@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function MyBox(){
+
+                var [x,setX]=React.useState(0);
+                var [y,setY]=React.useState(123);
+                return(
+                    <div>
+                        <h1>Welcome to MyBox Component</h1>
+                        <h2>{x}</h2>
+                        <h2>{y}</h2>
+                    </div>
+                )
+            }
+            ReactDOM.render(<MyBox />,document.getElementById("root"))
+        </script>
+    </body>
+</html>
