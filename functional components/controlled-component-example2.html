@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .betterview{
+                border:1px solid;
+                margin:10px;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function Students(){
+                const [newstudent,setnewstudent]=React.useState({
+                    firstname:'',
+                    lastname:'',
+                    dob:''
+                })
+                const [students,setstudents]=React.useState([])
+                function handleFirstName(e){
+                    setnewstudent({...newstudent,firstname:e.target.value})
+                }
+                function handleLastName(e){
+                    setnewstudent({...newstudent,lastname:e.target.value})
+                }
+                function handleDOB(e){
+                    setnewstudent({...newstudent,dob:e.target.value})
+                }
+                function addStudent(){
+                    setstudents([...students,{...newstudent}])
+                }
+
+                return(
+                    <div className="betterview">
+                        <input type="text" placeholder='firstname' onKeyUp={handleFirstName}/>
+                        <br/>
+                        <input type="text" placeholder='lastname' onKeyUp={handleLastName}/>
+                        <br/>
+                        <input type="date" placeholder='DOB' onChange={handleDOB}/>
+                        <br/>
+                        <button onClick={addStudent}>Add Student</button>
+                        <table border='2'>
+                            <thead>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>DOB</th>
+                            </thead>  
+                            <tbody>
+                                {
+                                    students.map((student,i)=>{
+                                        return(
+                                            <tr>
+                                                <td>{student.firstname}</td>    
+                                                <td>{student.lastname}</td>    
+                                                <td>{student.dob}</td>    
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>  
+                        </table>
+                    </div>
+                )
+            }
+            ReactDOM.render(<Students/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>
