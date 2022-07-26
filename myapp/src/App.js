@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import Counter from './Counter';
-import Foodcart from './Foodcart';
+import ButtonCounter from './ButtonCounter';
+import H1Counter from './H1Counter';
 function App() {
   
   return (
     <div className="App">
       <h1>Hello ReactJS Application development</h1>
-      
+      <ButtonCounter></ButtonCounter>
+      <H1Counter></H1Counter>
     </div>
   );
 }
