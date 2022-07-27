@@ -14,6 +14,7 @@ import Contactus from './Contactus';
 import Courses from './Courses'
 import CourseDetails from './CourseDetails';
 import Product from './Product';
+import ProductDetails from './ProductDetails';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
@@ -23,6 +24,7 @@ root.render(
                 <Route path="aboutus" element={<Aboutus></Aboutus>} />
                 <Route path='contactus' element={<Contactus></Contactus>} />
                 <Route path='products' element={<Product></Product>} />
+                <Route path='productdetails/:id' element={<ProductDetails></ProductDetails>} />
                 <Route path='courses' element={<Courses></Courses>}>
                     <Route path='courseDetails' element={<CourseDetails></CourseDetails>}></Route>
                 </Route>
