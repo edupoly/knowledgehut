@@ -6,7 +6,8 @@ function Counter(props) {
         <div className='betterview'>
             <h1>Counter:{props.count}</h1>
             <button onClick={()=>{props.dispatch({type:'INC'})}}>Increment</button>
-            <button>Decrement</button>
+            <button onClick={()=>{props.dispatch({type:'DEC'})}}>Decrement</button>
+            <button onClick={()=>{props.dispatch({type:'RESET'})}}>Reset</button>
         </div>
     )
 }
