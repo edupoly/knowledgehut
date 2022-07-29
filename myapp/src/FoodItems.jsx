@@ -10,6 +10,7 @@ function FoodItems(props) {
     React.useEffect(()=>{
         props.dispatch({type:'RESTAURANT_FOOD',payload:x.rname})
     },[x.rname])
+    
   return (
     <div>
         <h1>FoodItems of {x.rname}</h1>
