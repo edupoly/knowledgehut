@@ -12,7 +12,7 @@ function Restaurents(props){
                 props.allRestaurents.map((restaurent)=>{
                     return (
                         <div className='m-3 w-25 border border-thin'>
-                            <Link to="/foodItems" state={restaurent}>{restaurent.restaurant}</Link>
+                            <Link to={`/foodItems/${restaurent.restaurant}`}>{restaurent.restaurant}</Link>
                         </div>
                     )
                 })
