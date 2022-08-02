@@ -6,6 +6,8 @@ function Counter(props) {
   return (
     <div className='betterview'>
         <h1>Counter:{props.counter.count}</h1>
+        <button onClick={()=>{props.dispatch({type:'INC'})}}>Increment</button>&nbsp;&nbsp;&nbsp;
+        <button>Decrement</button>&nbsp;&nbsp;&nbsp;
     </div>
   )
 }
